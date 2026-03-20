@@ -64,7 +64,7 @@ export function WorkspaceSelector(onWorkspaceSelected) {
     const nombre = container.querySelector('#new-workspace-name').value;
     if (!nombre) return;
     try {
-      await apiClient.post('/workspaces', { nombre });
+      await workspaceApi.create({ nombre });
       container.querySelector('#new-workspace-name').value = '';
       refreshList();
     } catch (error) {

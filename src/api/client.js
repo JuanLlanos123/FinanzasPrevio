@@ -76,6 +76,10 @@ export const workspaceApi = {
     const usuarioId = localStorage.getItem('usuario_id');
     return apiClient.get(`/workspaces?usuarioId=${usuarioId}`);
   },
+  create: (data) => {
+    const usuarioId = localStorage.getItem('usuario_id');
+    return apiClient.post(`/workspaces?usuarioId=${usuarioId}`, data);
+  },
   select: (id) => apiClient.post(`/workspaces/${id}/seleccionar`, {}),
 };
 
