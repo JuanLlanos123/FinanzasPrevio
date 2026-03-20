@@ -49,7 +49,11 @@ export function RegisterPage(onRegisterSuccess, onBackToLogin) {
     errorMsg.style.display = 'none';
 
     try {
-      await authApi.register({ nombre, email, password });
+      const response = await authApi.register({ nombre, email, password });
+      apiClient.setToken(response.data.token);
+      if (response.data.id) {
+        localStorage.setItem('usuario_id', response.data.id);
+      }
       onRegisterSuccess();
     } catch (error) {
       errorMsg.textContent = error.message;

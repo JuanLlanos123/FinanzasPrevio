@@ -35,7 +35,7 @@ function showLogin() {
 
 function showRegister() {
   navigate(RegisterPage(
-    () => showLogin(),   // onRegisterSuccess
+    () => showWorkspaces(),   // onRegisterSuccess
     () => showLogin()    // onGoToLogin
   ));
 }
