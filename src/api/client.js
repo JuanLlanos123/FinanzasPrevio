@@ -68,7 +68,7 @@ export const apiClient = {
 
 export const authApi = {
   login: (credentials) => apiClient.post('/auth/login', credentials),
-  register: (user) => apiClient.post('/auth/register', user),
+  register: (user) => apiClient.post('/auth/registro', user),
 };
 
 export const workspaceApi = {
