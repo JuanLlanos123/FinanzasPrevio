@@ -98,3 +98,9 @@ export const beneficiaryApi = {
   list: () => apiClient.get('/beneficiarios'),
   create: (data) => apiClient.post('/beneficiarios', data),
 };
+
+export const creditCardApi = {
+  list: (workspaceId) => apiClient.get(`/credit-cards?workspaceId=${workspaceId}`),
+  create: (data) => apiClient.post('/credit-cards', data),
+  registerPayment: (id, data) => apiClient.post(`/credit-cards/${id}/pagos`, data),
+};

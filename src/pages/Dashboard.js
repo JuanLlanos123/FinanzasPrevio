@@ -11,6 +11,8 @@ export function Dashboard() {
         <p style="color: var(--text-muted); font-weight: 500;">Gestiona tu libertad financiera</p>
       </div>
       <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: flex-end;">
+        <button id="manage-cards-btn" class="btn btn-ghost">💳 Tarjetas</button>
+        <button id="pay-card-btn" class="btn btn-ghost">💸 Pagar Tarjeta</button>
         <button id="manage-categories-btn" class="btn btn-ghost">📂 Categorías</button>
         <button id="manage-beneficiaries-btn" class="btn btn-ghost">👤 Beneficiarios</button>
         <button id="new-transaction-btn" class="btn btn-primary" style="box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">+ Transacción</button>
@@ -154,6 +156,18 @@ export function Dashboard() {
   import('../components/BeneficiaryManager.js').then(({ BeneficiaryManager }) => {
     container.querySelector('#manage-beneficiaries-btn').addEventListener('click', () => {
       document.body.appendChild(BeneficiaryManager(() => loadData()));
+    });
+  });
+
+  import('../components/CreditCardManager.js').then(({ CreditCardManager }) => {
+    container.querySelector('#manage-cards-btn').addEventListener('click', () => {
+      document.body.appendChild(CreditCardManager(() => loadData()));
+    });
+  });
+
+  import('../components/PaymentForm.js').then(({ PaymentForm }) => {
+    container.querySelector('#pay-card-btn').addEventListener('click', () => {
+      document.body.appendChild(PaymentForm(() => loadData(), () => {}));
     });
   });
 
