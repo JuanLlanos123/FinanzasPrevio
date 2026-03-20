@@ -71,15 +71,25 @@ export const authApi = {
   register: (user) => apiClient.post('/auth/registro', user),
 };
 
+function getUsuarioId() {
+  let id = localStorage.getItem('usuario_id');
+  if (id && id !== 'null' && id !== 'undefined') return id;
+  
+  const token = localStorage.getItem('auth_token');
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      id = payload.id || payload.usuarioId || payload.sub;
+      if (id) localStorage.setItem('usuario_id', id);
+      return id;
+    } catch (e) { console.error('Token extraction failed', e); }
+  }
+  return id;
+}
+
 export const workspaceApi = {
-  list: () => {
-    const usuarioId = localStorage.getItem('usuario_id');
-    return apiClient.get(`/workspaces?usuarioId=${usuarioId}`);
-  },
-  create: (data) => {
-    const usuarioId = localStorage.getItem('usuario_id');
-    return apiClient.post(`/workspaces?usuarioId=${usuarioId}`, data);
-  },
+  list: () => apiClient.get(`/workspaces?usuarioId=${getUsuarioId()}`),
+  create: (data) => apiClient.post(`/workspaces?usuarioId=${getUsuarioId()}`, data),
   select: (id) => apiClient.post(`/workspaces/${id}/seleccionar`, {}),
 };
 
