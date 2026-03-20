@@ -1,0 +1,50 @@
+{
+  "CreditCardRequest": {
+    "type": "object",
+    "properties": {
+      "workspaceId": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "nombre": {
+        "type": "string"
+      },
+      "moneda": {
+        "type": "string"
+      },
+      "cupo": {
+        "type": "number"
+      },
+      "diaCorte": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "diaPago": {
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  },
+  "CreditCardPaymentRequest": {
+    "type": "object",
+    "properties": {
+      "cuentaId": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "monto": {
+        "type": "number"
+      },
+      "fecha": {
+        "type": "string",
+        "format": "date"
+      },
+      "descripcion": {
+        "type": "string"
+      },
+      "saldarCargos": {
+        "type": "boolean"
+      }
+    }
+  }
+}

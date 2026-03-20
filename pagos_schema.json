@@ -1,0 +1,102 @@
+{
+  "/api/credit-cards": {
+    "get": {
+      "tags": [
+        "credit-card-controller"
+      ],
+      "operationId": "list_3",
+      "parameters": [
+        {
+          "name": "workspaceId",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseApiListCreditCardDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "tags": [
+        "credit-card-controller"
+      ],
+      "operationId": "create_3",
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreditCardRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseApiCreditCardDTO"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/credit-cards/{id}/pagos": {
+    "post": {
+      "tags": [
+        "credit-card-controller"
+      ],
+      "operationId": "registerPayment",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CreditCardPaymentRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseApiVoid"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
