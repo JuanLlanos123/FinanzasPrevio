@@ -46,6 +46,9 @@ export function LoginPage(onLoginSuccess, onGoToRegister) {
     try {
       const response = await authApi.login({ email, password });
       apiClient.setToken(response.data.token);
+      if (response.data.id) {
+        localStorage.setItem('usuario_id', response.data.id);
+      }
       onLoginSuccess();
     } catch (error) {
       errorMsg.textContent = error.message;

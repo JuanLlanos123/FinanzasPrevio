@@ -72,7 +72,10 @@ export const authApi = {
 };
 
 export const workspaceApi = {
-  list: () => apiClient.get('/workspaces'),
+  list: () => {
+    const usuarioId = localStorage.getItem('usuario_id');
+    return apiClient.get(`/workspaces?usuarioId=${usuarioId}`);
+  },
   select: (id) => apiClient.post(`/workspaces/${id}/seleccionar`, {}),
 };
 
